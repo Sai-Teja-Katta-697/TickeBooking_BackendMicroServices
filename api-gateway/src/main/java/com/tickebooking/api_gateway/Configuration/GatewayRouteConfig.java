@@ -15,7 +15,7 @@ public class GatewayRouteConfig {
                         .path("/user-service/**")
                         .filters(f -> f
                                 .stripPrefix(1)
-                                .prefixPath("/user-service/v1/user")
+                                .prefixPath("/user-service/v1")
                         )
                         .uri("lb://USER-SERVICE")
                 )

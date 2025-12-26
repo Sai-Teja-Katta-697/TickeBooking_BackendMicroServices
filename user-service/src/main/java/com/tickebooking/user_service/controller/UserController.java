@@ -9,7 +9,6 @@ import static com.tickebooking.user_service.util.Constants.COMMON_ENDPOINT;
 @RestController
 @RequestMapping(COMMON_ENDPOINT+"user")
 public class UserController {
-
     @GetMapping("/test")
     public String test() {
         return "User service internal path works";
