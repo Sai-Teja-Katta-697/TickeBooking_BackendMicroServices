@@ -7,12 +7,14 @@ import com.tickebooking.user_service.entity.User;
 import com.tickebooking.user_service.repository.UserRepository;
 import com.tickebooking.user_service.util.JwtUtil;
 import lombok.Data;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @Data
-public class UserService {
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
@@ -52,5 +54,18 @@ public class UserService {
                 .token(jwtUtil.generateToken(user.getUsername(), user.getRole()))
                 .build();
 
+    }
+
+    @Override
+    public LoginResponseDTO loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        org.springframework.security.core.userdetails.User
+                .withUsername(user.getUsername())
+                .password(user.getPassword())
+                .roles(user.getRole())
+                .disabled(!user.getEnabled())
+                .build();
+        return null;
     }
 }

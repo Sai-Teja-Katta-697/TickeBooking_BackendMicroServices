@@ -1,0 +1,22 @@
+{
+  "type": "record",
+  "name": "BookingEvent",
+  "namespace": "com.ticketbooking.avro",
+  "fields": [
+    { "name": "busId", "type": "long" },
+     {
+          "name": "booking_id",
+          "type": ["null", "string"],
+          "default": null
+        },
+    {
+      "name": "seatNumber",
+      "type": {
+        "type": "array",
+        "items": "int"
+      }
+    },
+    { "name": "userId", "type": "string" },
+    { "name": "status", "type": "string" }
+  ]
+}

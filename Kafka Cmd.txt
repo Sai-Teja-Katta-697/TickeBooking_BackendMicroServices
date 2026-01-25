@@ -1,0 +1,15 @@
+Kafka Commands
+
+zookeper :	.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+Start Kafka Broker:	.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+------------confluent kafka---------------
+zookeper :	.\bin\windows\zookeeper-server-start.bat .\etc\kafka\zookeeper.properties
+cd C:\confluent
+.\bin\windows\kafka-server-start.bat .\etc\kafka\server.properties
+cd C:\confluent
+.\bin\windows\schema-registry-start.bat .\etc\schema-registry\schema-registry.properties
+.\bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
+http://localhost:8081/subjects
+docker compose -f DockerFile.yml up
+hgmBhfwJTnq3-XiuxZbmjQ
